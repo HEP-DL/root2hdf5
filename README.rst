@@ -28,7 +28,9 @@ A Very Non-Generic ROOT File to HDF5 Converter
 Features
 --------
 
-* TODO
+Currently, this conversion only supports LArCV ROOT files to HDF5.
+
+> NOTE: This requires both `ROOT` and `LArCV` to be installed. These are not managed by `pip`, and thus are not collected in `requirements.txt`.
 
 Credits
 ---------
