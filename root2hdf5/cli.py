@@ -6,9 +6,10 @@ import sys
 
 @click.command()
 def main(args=None):
-    logging.setBasicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.INFO)
     if args == None:
       cick.echo("Please Supply Filenames to Convert")
+      sys.exit(0)
     from root2hdf5.converters.larcv_file import LArCVFile
     LArCVFile(args).setup().go()
 
