@@ -1,6 +1,14 @@
 root2hdf5 package
 =================
 
+Subpackages
+-----------
+
+.. toctree::
+
+    root2hdf5.converters
+    root2hdf5.data_types
+
 Submodules
 ----------
 
