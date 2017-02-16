@@ -10,7 +10,6 @@ from itertools import product
 import progressbar
 
 
-
 def convert_images(_file, output_file):
   pixel_tree_name = 'image2d_tpc_hires_crop_tree'
   pixel_ch = TChain(pixel_tree_name)
@@ -318,14 +317,3 @@ def convert_file(_file):
   convert_segment(_file, output_file)
   convert_chst(_file, output_file)
 
-if __name__ == "__main__":
-  files = os.listdir('./dl')
-  exclude = []#['eminus_test.root']
-  for _file in files:
-    if _file in exclude:
-      continue
-    try:
-      convert_file(_file)
-    except Exception as e:
-      print "COULD NOT CONVERT FILE: ",_file
-      print e
