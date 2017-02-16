@@ -2,32 +2,15 @@
 
 import click
 import logging
-
-
+import sys
 
 @click.command()
 def main(args=None):
     logging.setBasicConfig(level=logging.INFO)
-    """Console script for root2hdf5"""
-    click.echo("Replace this message by putting your code into "
-               "root2hdf5.cli.main")
-    click.echo("See click documentation at http://click.pocoo.org/")
-    from converters import *
-    for _file in args:
-      pass
-
-
-if __name__ == "__main__":
-  files = os.listdir('./dl')
-  exclude = []#['eminus_test.root']
-  for _file in files:
-    if _file in exclude:
-      continue
-    try:
-      convert_file(_file)
-    except Exception as e:
-      print "COULD NOT CONVERT FILE: ",_file
-      print e
+    if args == None:
+      cick.echo("Please Supply Filenames to Convert")
+    from root2hdf5.converters.larcv_file import LArCVFile
+    LArCVFile(args).setup().go()
 
 if __name__ == "__main__":
     main()

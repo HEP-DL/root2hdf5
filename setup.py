@@ -25,7 +25,7 @@ setup(
     long_description=readme + '\n\n' + history,
     author="Kevin Wierman",
     author_email='kevin.wierman@pnnl.gov',
-    url='https://github.com/kwierman/root2hdf5',
+    url='https://github.com/HEP-DL/root2hdf5',
     packages=[
         'root2hdf5',
     ],
