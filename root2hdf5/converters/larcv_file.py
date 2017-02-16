@@ -19,11 +19,13 @@ class LArCVFile(object):
   def setup(self):
     if len(self.data_types) == 0:
       from root2hdf5.data_types.larcv import (TPCImage, ROIData, 
-                                              PMTData, ChannelStatusData)
+                                              PMTData, ChannelStatusData,
+                                              SegmentData)
       self.data_types.append(TPCImage)    
       self.data_types.append(ROIData)
       self.data_types.append(PMTData)
       self.data_types.append(ChannelStatusData)
+      self.data_types.append(SegmentData)
 
   def go(self):
     for _file in self.files():
