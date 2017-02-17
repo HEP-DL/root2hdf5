@@ -1,4 +1,4 @@
-import progressbar
+
 import logging
 
 
@@ -12,6 +12,7 @@ class BaseData(object):
     self.chain.AddFile(_file)
 
   def convert(self):
+    import progressbar
     self.logger.info("Starting Conversion of: {}".format(self.tree_name))
     bar = progressbar.ProgressBar(maxval=self.chain.GetEntries(),
       widgets=[progressbar.Bar('=', '    [', ']'), ' ', 
