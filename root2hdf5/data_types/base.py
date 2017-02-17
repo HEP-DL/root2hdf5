@@ -35,4 +35,5 @@ class BaseData(object):
     self.chain.GetEntry(self.event_index)
     branch = getattr(self.chain, self.tree_name.replace('tree','branch'))
     self.process_branch(branch)
+    self.event_index+=1
     return self.event_index
