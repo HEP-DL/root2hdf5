@@ -26,4 +26,4 @@ class ChannelStatusData(BaseData):
       for index, status in enumerate(branch.Status(0).as_vector()):
         buff[branch.Status(plane).Plane(), index] = status
     self.dataset.resize((self.event_index+1, 3,2400))
-    self.dataset[event_index,:,:] = buff
+    self.dataset[self.event_index,:,:] = buff
