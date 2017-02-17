@@ -18,6 +18,7 @@ class BaseData(object):
                                progressbar.Percentage()])
     bar.start()
     for i in self:
+      print(i)
       bar.update(i)
     bar.finish()
     self.logger.info("Done.")
