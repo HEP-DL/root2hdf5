@@ -3,6 +3,7 @@ import h5py
 import os
 
 class LArCVFile(object):
+  logger = logging.getLogger('root2hdf5.converters.larcv')
   
   def __init__(self, files=None):
     self._files=files if files is not None else []
