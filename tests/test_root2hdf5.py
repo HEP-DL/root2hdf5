@@ -13,7 +13,6 @@ import pytest
 from contextlib import contextmanager
 from click.testing import CliRunner
 
-from root2hdf5 import root2hdf5
 from root2hdf5 import cli
 
 
