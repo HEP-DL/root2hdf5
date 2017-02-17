@@ -29,7 +29,7 @@ class LArCVFile(object):
     return self
 
   def go(self):
-    for _file in self.files():
+    for _file in self.files:
       self.logger.info("Processing File: {}".format(_file))
       output_file = h5py.File(_file.replace('.root','.h5'),'w')
       conversions = [i(_file, output_file) for i in self.data_types ]
