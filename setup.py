@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from setuptools import setup
+from setuptools import setup, find_packages
 
 with open('README.rst') as readme_file:
     readme = readme_file.read()
@@ -29,6 +30,9 @@ setup(
     url='https://github.com/HEP-DL/root2hdf5',
     packages=[
         'root2hdf5',
+        'root2hdf5.converters',
+        'root2hdf5.data_types',
+        'root2hdf5.data_types.larcv'
     ],
     package_dir={'root2hdf5':
                  'root2hdf5'},
