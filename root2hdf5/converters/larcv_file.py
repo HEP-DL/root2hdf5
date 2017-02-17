@@ -26,6 +26,7 @@ class LArCVFile(object):
       self.data_types.append(PMTData)
       self.data_types.append(ChannelStatusData)
       self.data_types.append(SegmentData)
+    return self
 
   def go(self):
     for _file in self.files():
