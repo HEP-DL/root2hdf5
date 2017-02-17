@@ -6,7 +6,7 @@ import sys
 
 
 @click.command()
-@click.argument('file', nargs=-1)
+@click.argument('files', nargs=-1)
 def main(files=None):
     logging.basicConfig(level=logging.INFO)
     if files == None:
