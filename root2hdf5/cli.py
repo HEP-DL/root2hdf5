@@ -4,8 +4,9 @@ import click
 import logging
 import sys
 
+
 @click.command()
-@click.argument('src', nargs=-1)
+@click.argument('file', nargs=-1)
 def main(files=None):
     logging.basicConfig(level=logging.INFO)
     if files == None:
