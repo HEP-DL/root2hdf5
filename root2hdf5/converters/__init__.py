@@ -1,1 +1,1 @@
-from . import larcv_file
+import larcv_file
