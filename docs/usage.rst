@@ -8,4 +8,4 @@ To use ROOT2HDF5 in a project::
 
 To use ROOT2HDF5 as a command line interface::
 
-  python -m root2hdf5.cli [file1.root [file2.root [...]]]
+    root2hdf5 [file1.root [file2.root [...]]]

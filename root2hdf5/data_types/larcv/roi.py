@@ -1,4 +1,3 @@
-from ROOT import TChain
 import logging
 from root2hdf5.data_types.base import BaseData
 import numpy as np
@@ -144,7 +143,7 @@ class ROIData(BaseData):
   def process_branch(self, branch):
     roi_index=0
     for roi in branch.ROIArray():
-      for conversion in simple_conversions:
+      for conversion in self.simple_conversions:
         conversion.fill_buffer(self.event_index, roi_index, roi)
       roi_index+=1
-  [conversion.finish for conversion in simple_conversions]
+    [conversion.finish for conversion in self.simple_conversions]

@@ -1,1 +1,1 @@
-__all__=['larcv_file']
+import larcv_file

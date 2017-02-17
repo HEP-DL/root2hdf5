@@ -14,7 +14,7 @@ class LArCVFile(object):
 
   @property 
   def data_types(self):
-    return self._data_types=[]
+    return self._data_types
 
   def setup(self):
     if len(self.data_types) == 0:

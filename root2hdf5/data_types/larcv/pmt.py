@@ -1,8 +1,6 @@
-from ROOT import TChain
-import logging
 from root2hdf5.data_types.base import BaseData
 import numpy as np
-from larcv import larcv
+import logging
 
 class PMTData(BaseData):
   logger = logging.getLogger('root2hdf5.data_types.pmt')
@@ -10,6 +8,8 @@ class PMTData(BaseData):
 
   def __init__(self, _file, output_file):
     super(PMTData, self).__init__(_file)
+    from larcv import larcv
+    self.array_converter = larcv.as_ndarray
     self.dataset = output_file.create_dataset("image2d/pmt", (10,1,1500,32), maxshape=(None,1,1500,32),
                                              chunks=(10,1,1500,32), dtype='f',compression="gzip")
     self.dataset.attrs['name'] = 'image2d_pmt'
@@ -22,7 +22,7 @@ class PMTData(BaseData):
     self.buffer_index=0
 
   def process_branch(self, branch):
-    layerimage = larcv.as_ndarray(branch.at(0))
+    layerimage = self.array_converter(branch.at(0))
     layerimage.resize(1500,32)
     self.buffer[self.buffer_index, 0] = layerimage
     self.buffer_index+=1

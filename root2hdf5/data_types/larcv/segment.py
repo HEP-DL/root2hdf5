@@ -1,8 +1,6 @@
-from ROOT import TChain
-import logging
 from root2hdf5.data_types.base import BaseData
 import numpy as np
-from larcv import larcv
+import logging
 
 class SegmentData(BaseData):
   logger = logging.getLogger('root2hdf5.data_types.segment')
@@ -10,6 +8,8 @@ class SegmentData(BaseData):
 
   def __init__(self, _file, output_file):
     super(SegmentData, self).__init__(_file)
+    from larcv import larcv
+    self.array_converter = larcv.as_ndarray
     self.logger.info("Setting Up Segment Data Stream")
 
     self.dataset = output_file.create_dataset("image2d/segment",
@@ -27,7 +27,7 @@ class SegmentData(BaseData):
 
   def process_branch(self, branch):
     for layer in range(3):
-      layerimage = larcv.as_ndarray(branch.at(layer))
+      layerimage = self.array_converter(branch.at(layer))
       layerimage.resize(576,576)
       self.buffer[self.buffer_index, layer] = layerimage
     self.buffer_index+=1

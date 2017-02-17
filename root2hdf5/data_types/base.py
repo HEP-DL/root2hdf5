@@ -6,6 +6,7 @@ class BaseData(object):
   tree_name=''
   logger = logging.getLogger('root2hdf5.data_types.base')
   def __init__(self, _file):
+    from ROOT import TChain
     self.event_index=0
     self.chain = TChain(self.tree_name)
     self.chain.AddFile(_file)
