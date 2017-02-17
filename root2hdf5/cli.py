@@ -9,7 +9,7 @@ import sys
 @click.argument('files', nargs=-1)
 def main(files=None):
     logging.basicConfig(level=logging.INFO)
-    if files == None:
+    if len(files) == 0:
       click.echo("usage: root2hdf5 --src filename.root [filename.root [...]]")
       sys.exit(0)
     from root2hdf5.converters.larcv_file import LArCVFile
