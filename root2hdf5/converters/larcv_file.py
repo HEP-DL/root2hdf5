@@ -34,6 +34,6 @@ class LArCVFile(object):
       self.logger.info("Processing File: {}".format(_file))
       output_file = h5py.File(_file.replace('.root','.h5'),'w')
       conversions = [i(_file, output_file) for i in self.data_types ]
-      for conv in conversion:
+      for conv in conversions:
         conv.convert()
 
