@@ -3,42 +3,39 @@ from root2hdf5.data_types.base import BaseData
 import numpy as np
 import os
 
+
 class ROIConversion:
-  def __init__(self, output_file, label='', method_name=''):
+  def __init__(self, output_file, label='', method_name='', size=10):
     self.dataset = output_file.create_dataset('labels/{}'.format(label),
-                                              (10,1,),
-                                              maxshape=(None,None),
-                                              chunks=(10,1),
-                                              dtype='f',
+                                              (10,size,),
+                                              maxshape=(None,size),
+                                              chunks=(10,size),
+                                              dtype='H',
                                               compression='gzip'
                                              )
 
     self.dataset.attrs['index0'] = "eventN"
     self.dataset.attrs['index1'] = 'index'
-    self.buffer = np.ndarray( (10,1) )
+    self.buffer = np.ndarray( (10,size) )
     self.current_index=0
     self.method_name = method_name
 
   def fill_buffer(self, event_index, roi_index, roi):
-    #resize the  if necessary
-    if roi_index>=self.buffer.shape[1]:
-      self.buffer.resize( (10,roi_index+1) )
-
-    self.buffer[self.current_index, roi_index] = getattr(roi, self.method_name)()
+    self.buffer[self.current_index, getattr(roi, self.method_name)() ] += 1 
     self.current_index +=1
     if self.current_index == 10:
-      #then buffer is filled, let's dump this to file
       self.dataset.resize((event_index+10, self.buffer.shape[1]))
       self.dataset[event_index:event_index+10,:] = self.buffer
       self.current_index=0
       self.buffer = np.zeros(shape = self.buffer.shape)
 
-
   def finish(self):
     self.dataset.resize((self.dataset.shape[0]+self.current_index, self.buffer.shape[1]))
     self.dataset[event_index:event_index+self.current_index,:] = self.buffer
 
+
 class CoordinateConversion:
+
   def __init__(self, output_file, label='', method_names=['','','']):
     self.dataset = output_file.create_dataset('labels/{}'.format(label),
                                               (10,1,3),
@@ -73,7 +70,9 @@ class CoordinateConversion:
     self.dataset.resize((self.dataset.shape[0]+self.current_index, self.buffer.shape[1],3))
     self.dataset[event_index:event_index+self.current_index,:,:] = self.buffer
 
+
 class BoundingBoxConversion:
+
   def __init__(self, output_file, label=''):
     self.dataset = output_file.create_dataset('labels/boundingBox',(10,1,1,4), maxshape=(None,None,None,4),
                                                  chunks=(10,1,1,4),dtype='f',compression='gzip')
@@ -114,22 +113,19 @@ class BoundingBoxConversion:
 class ROIData(BaseData):
   logger = logging.getLogger('root2hdf5.data_types.roidata')
   tree_name = 'partroi_tpc_hires_crop_tree'
+
   def __init__(self, _file, output_file):
     super(ROIData, self).__init__(_file)
 
     self.simple_conversions = [
-      ROIConversion(output_file, 'type','Type'),
-      ROIConversion(output_file, 'shape','Shape'),
-      ROIConversion(output_file, 'mcstIndex','MCSTIndex'),
-      ROIConversion(output_file, 'mctIndex','MCTIndex'),
-      ROIConversion(output_file, 'energyDeposited','EnergyDeposit'),
-      ROIConversion(output_file, 'energyInitial','EnergyInit'),
-      ROIConversion(output_file, 'pdgCode','PdgCode'),
-      ROIConversion(output_file, 'parentPDGCode','ParentPdgCode'),
-      ROIConversion(output_file, 'trackID','TrackID'),
-      ROIConversion(output_file, 'parentTrackID','ParentTrackID'),
-      ROIConversion(output_file, 'neutrinoInteractionType','NuInteractionType'),
-      ROIConversion(output_file, 'neutrinoCurrentType','NuCurrentType'),
+      ROIConversion(output_file, 'type','Type',10),
+      ROIConversion(output_file, 'shape','Shape', 3),
+      #ROIConversion(output_file, 'energyDeposited','EnergyDeposit'),
+      #ROIConversion(output_file, 'energyInitial','EnergyInit'),
+      #ROIConversion(output_file, 'pdgCode','PdgCode'),
+      #ROIConversion(output_file, 'parentPDGCode','ParentPdgCode'),
+      #ROIConversion(output_file, 'neutrinoInteractionType','NuInteractionType'),
+      #ROIConversion(output_file, 'neutrinoCurrentType','NuCurrentType'),
       CoordinateConversion(output_file, 'position', ['X','Y','Z']),
       CoordinateConversion(output_file, 'momentum', ['Px','Py','Pz']),
       CoordinateConversion(output_file, 'parentPosition', ['ParentX','ParentY','ParentZ']),
