@@ -4,7 +4,7 @@
 from setuptools import setup
 from setuptools import setup, find_packages
 from pip.req import parse_requirements
-
+import pip
 
 with open('README.rst') as readme_file:
     readme = readme_file.read()
@@ -12,8 +12,10 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-install_reqs = parse_requirements('requirements.txt')
-dev_reqs = parse_requirements('requirements_dev.txt')
+install_reqs = reqs = [str(ir.req) for ir in parse_requirements('requirements.txt',
+    session=pip.download.PipSession())]
+dev_reqs = [str(ir.req) for ir in parse_requirements('requirements_dev.txt',
+    session=pip.download.PipSession())]
 
 setup(
     name='root2hdf5',
