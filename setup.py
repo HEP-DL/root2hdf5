@@ -27,17 +27,16 @@ setup(
     author="Kevin Wierman",
     author_email='kevin.wierman@pnnl.gov',
     url='https://github.com/HEP-DL/root2hdf5',
-    packages=[
-        'root2hdf5',
-        'root2hdf5.converters',
-        'root2hdf5.data_types',
-        'root2hdf5.data_types.larcv'
-    ],
+    packages=find_packages(),
     package_dir={'root2hdf5':
                  'root2hdf5'},
     entry_points={
         'console_scripts': [
             'root2hdf5=root2hdf5.cli:main'
+        ],
+        'root2hdf5.plugins':[
+            'ttree=root2hdf5.plugins.ttree',
+            'larcv=root2hdf5.plugins.larcv',
         ]
     },
     include_package_data=True,

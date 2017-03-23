@@ -1,5 +1,33 @@
 
 import logging
+import h5py
+
+class BaseFile(object):
+  logger = logging.getLogger('root2hdf5.framework.base.BaseFile')
+
+  def __init__(self, files=None):
+    self._files=files if files is not None else []
+    self._data_types=[]
+
+  @property
+  def files(self):
+    return self._files
+
+  @property 
+  def data_types(self):
+    return self._data_types
+
+  @property
+  def conversions(self):
+    return [i(self._file, self.output_file) for i in self.data_types ]
+
+  def go(self):
+    for _file in self.files:
+      self.logger.info("Processing File: {}".format(_file))
+      self._file=_file
+      self.output_file = h5py.File(_file.replace('.root','.h5'),'w')
+      for conv in self.conversions:
+        conv.convert()
 
 
 class BaseData(object):
