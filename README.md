@@ -25,6 +25,8 @@ Currently, this conversion only supports:
 
 * ROOT Files with flat TTrees
 
+    * This assumes that data is stored in trees in the parent directory. The trees themselves must contain primitives or ntuples in the branches.
+
 ## Credits
 
 This package was created with [Cookiecutter](https://github.com/audreyr/cookiecutter) and the [`audreyr/cookiecutter-pypackage`](https://github.com/audreyr/cookiecutter-pypackage) project template.
