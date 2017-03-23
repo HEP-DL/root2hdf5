@@ -1,5 +1,5 @@
 numpy==1.11.2
 progressbar==2.3
-h5py==2.6.0
+h5py==2.7.0
 click==6.7
 stevedore==1.21.0
