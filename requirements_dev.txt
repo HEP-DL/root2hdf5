@@ -8,6 +8,6 @@ Sphinx==1.5.3
 cryptography==1.8.1
 PyYAML==3.12
 pytest==3.0.7
-h5py>=2.6.0
+h5py==2.7.0
 mock==2.0.0
-pytest==2.9.2
+pytest==3.0.7
