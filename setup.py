@@ -21,7 +21,7 @@ test_requirements = [
 
 setup(
     name='root2hdf5',
-    version='1.0.0',
+    version='1.1.0',
     description="A Very Non-Generic ROOT File to HDF5 Converter",
     long_description=readme + '\n\n' + history,
     author="Kevin Wierman",
