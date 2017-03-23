@@ -13,6 +13,7 @@ with open('HISTORY.rst') as history_file:
 requirements = [
     'Click>=6.0',
     'numpy>=1.10.0',
+    'stevedore==1.21.0'
 ]
 
 test_requirements = [
