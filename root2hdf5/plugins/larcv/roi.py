@@ -120,12 +120,6 @@ class ROIData(BaseData):
     self.simple_conversions = [
       ROIConversion(output_file, 'type','Type',10),
       ROIConversion(output_file, 'shape','Shape', 3),
-      #ROIConversion(output_file, 'energyDeposited','EnergyDeposit'),
-      #ROIConversion(output_file, 'energyInitial','EnergyInit'),
-      #ROIConversion(output_file, 'pdgCode','PdgCode'),
-      #ROIConversion(output_file, 'parentPDGCode','ParentPdgCode'),
-      #ROIConversion(output_file, 'neutrinoInteractionType','NuInteractionType'),
-      #ROIConversion(output_file, 'neutrinoCurrentType','NuCurrentType'),
       CoordinateConversion(output_file, 'position', ['X','Y','Z']),
       CoordinateConversion(output_file, 'momentum', ['Px','Py','Pz']),
       CoordinateConversion(output_file, 'parentPosition', ['ParentX','ParentY','ParentZ']),

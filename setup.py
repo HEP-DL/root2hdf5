@@ -3,6 +3,8 @@
 
 from setuptools import setup
 from setuptools import setup, find_packages
+from pip.req import parse_requirements
+
 
 with open('README.rst') as readme_file:
     readme = readme_file.read()
@@ -10,19 +12,12 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = [
-    'Click>=6.0',
-    'numpy>=1.10.0',
-    'stevedore==1.21.0'
-]
-
-test_requirements = [
-    # TODO: put package test requirements here
-]
+install_reqs = parse_requirements('requirements.txt')
+dev_reqs = parse_requirements('requirements_dev.txt')
 
 setup(
     name='root2hdf5',
-    version='1.1.1',
+    version='1.1.3',
     description="A Very Non-Generic ROOT File to HDF5 Converter",
     long_description=readme + '\n\n' + history,
     author="Kevin Wierman",
@@ -41,7 +36,7 @@ setup(
         ]
     },
     include_package_data=True,
-    install_requires=requirements,
+    install_requires=install_reqs,
     license="GNU General Public License v3",
     zip_safe=False,
     keywords='root2hdf5',
@@ -55,5 +50,5 @@ setup(
         'Programming Language :: Python :: 3.5',
     ],
     test_suite='tests',
-    tests_require=test_requirements
+    tests_require=dev_reqs
 )

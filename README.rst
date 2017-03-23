@@ -31,12 +31,3 @@ Features
 Currently, this conversion only supports LArCV ROOT files to HDF5.
 
 > NOTE: This requires both `ROOT` and `LArCV` to be installed. These are not managed by `pip`, and thus are not collected in `requirements.txt`.
-
-Credits
----------
-
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
-
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
-
