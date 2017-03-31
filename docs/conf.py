@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # root2hdf5 documentation build configuration file, created by
-# sphinx-quickstart on Fri Mar 31 14:35:47 2017.
+# sphinx-quickstart on Fri Mar 31 14:51:46 2017.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -31,9 +31,6 @@
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = ['sphinx.ext.autodoc',
-    'sphinx.ext.intersphinx',
-    'sphinx.ext.todo',
-    'sphinx.ext.coverage',
     'sphinx.ext.mathjax',
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode']
@@ -44,14 +41,12 @@ templates_path = ['_templates']
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
-# source_suffix = ['.rst', '.md']
 from recommonmark.parser import CommonMarkParser
-
 source_parsers = {
     '.md': CommonMarkParser,
 }
 
-source_suffix = '.md'
+source_suffix = ['.rst', '.md']
 
 # The master toctree document.
 master_doc = 'index'
@@ -86,7 +81,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 pygments_style = 'sphinx'
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
-todo_include_todos = True
+todo_include_todos = False
 
 
 # -- Options for HTML output ----------------------------------------------
@@ -166,6 +161,3 @@ texinfo_documents = [
 
 
 
-
-# Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {'https://docs.python.org/': None}
