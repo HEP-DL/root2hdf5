@@ -6,11 +6,6 @@ from setuptools import setup, find_packages
 from pip.req import parse_requirements
 import pip
 
-with open('README.rst') as readme_file:
-    readme = readme_file.read()
-
-with open('HISTORY.rst') as history_file:
-    history = history_file.read()
 
 install_reqs = reqs = [str(ir.req) for ir in parse_requirements('requirements.txt',
     session=pip.download.PipSession())]
@@ -19,9 +14,9 @@ dev_reqs = [str(ir.req) for ir in parse_requirements('requirements_dev.txt',
 
 setup(
     name='root2hdf5',
-    version='1.1.3',
+    version='1.1.4',
     description="A Very Non-Generic ROOT File to HDF5 Converter",
-    long_description=readme + '\n\n' + history,
+    long_description="https://root2hdf5.readthedocs.io/",
     author="Kevin Wierman",
     author_email='kevin.wierman@pnnl.gov',
     url='https://github.com/HEP-DL/root2hdf5',
