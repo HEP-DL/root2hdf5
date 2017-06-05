@@ -6,11 +6,15 @@ from setuptools import setup, find_packages
 from pip.req import parse_requirements
 import pip
 
-
 install_reqs = reqs = [str(ir.req) for ir in parse_requirements('requirements.txt',
     session=pip.download.PipSession())]
 dev_reqs = [str(ir.req) for ir in parse_requirements('requirements_dev.txt',
     session=pip.download.PipSession())]
+
+try:
+    import ROOT
+except ImportError:
+    sys.exit("ROOT cannot be imported. Is ROOT installed with PyROOT enabled?")
 
 setup(
     name='root2hdf5',
