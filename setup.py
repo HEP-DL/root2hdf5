@@ -18,7 +18,7 @@ except ImportError:
 
 setup(
     name='root2hdf5',
-    version='1.1.4',
+    version='1.2.0',
     description="A Very Non-Generic ROOT File to HDF5 Converter",
     long_description="https://root2hdf5.readthedocs.io/",
     author="Kevin Wierman",
@@ -42,7 +42,7 @@ setup(
     zip_safe=False,
     keywords='root2hdf5',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Natural Language :: English',
