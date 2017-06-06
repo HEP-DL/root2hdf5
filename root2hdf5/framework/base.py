@@ -1,13 +1,14 @@
 
 import logging
 import h5py
+import tqdm
 
 class BaseFile(object):
   logger = logging.getLogger('root2hdf5.framework.base.BaseFile')
 
   def __init__(self, files=None):
-    self._files=files if files is not None else []
-    self._data_types=[]
+    self._files = files if files is not None else []
+    self._data_types = []
 
   @property
   def files(self):
@@ -24,7 +25,7 @@ class BaseFile(object):
   def go(self):
     for _file in self.files:
       self.logger.info("Processing File: {}".format(_file))
-      self._file=_file
+      self._file = _file
       self.output_file = h5py.File(_file.replace('.root','.h5'),'w')
       for conv in self.conversions:
         conv.convert()
@@ -35,20 +36,17 @@ class BaseData(object):
   logger = logging.getLogger('root2hdf5.data_types.base')
   def __init__(self, _file):
     from ROOT import TChain
-    self.event_index=0
+    self.event_index = 0
     self.chain = TChain(self.tree_name)
     self.chain.AddFile(_file)
 
   def convert(self):
-    import progressbar
     self.logger.info("Starting Conversion of: {}".format(self.tree_name))
-    bar = progressbar.ProgressBar(maxval=self.chain.GetEntries(),
-      widgets=[progressbar.Bar('=', '    [', ']'), ' ', 
-                               progressbar.Percentage()])
-    bar.start()
+    pbar = tqdm.tqdm(total=self.chain.GetEntries())
     for i in self:
-      bar.update(i)
-    bar.finish()
+      pbar.update(1)
+    pbar.close()
+    del pbar
     self.logger.info("Done.")
 
   def __iter__(self):
@@ -63,5 +61,5 @@ class BaseData(object):
     self.chain.GetEntry(self.event_index)
     branch = getattr(self.chain, self.tree_name.replace('tree','branch'))
     self.process_branch(branch)
-    self.event_index+=1
+    self.event_index += 1
     return self.event_index
