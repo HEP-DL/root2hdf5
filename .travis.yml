@@ -15,4 +15,4 @@ before_install:
   - sudo apt-get install -qq libatlas-dev libatlas-base-dev liblapack-dev gfortran libhdf5-serial-dev python-tables
   - sudo pip install -U pip
 install: "pip install -r requirements_dev.txt"
-script: make test
+script: pytest
