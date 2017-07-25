@@ -1,4 +1,4 @@
-numpy==1.13.0
+numpy==1.13.1
 click==6.7
-stevedore==1.23.0
-tqdm==4.14.0
+stevedore==1.25.0
+tqdm==4.15.0
