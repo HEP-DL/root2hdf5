@@ -26,3 +26,12 @@ Currently, this conversion only supports:
 
     * This assumes that data is stored in trees in the parent directory. The trees themselves must contain primitives or ntuples in the branches.
 
+
+## TODO:
+
+* Create the metadata description schema for each file
+* Convert over a LArCV file
+* Convert over a b2 file
+* Convert over a bland ttree file.
+
+Hopefully the conversion scheme should work for each one.
