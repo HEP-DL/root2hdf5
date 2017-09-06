@@ -8,5 +8,5 @@ pytest==3.2.1
 mock==2.0.0
 numpy==1.13.1
 click==6.7
-stevedore==1.25.0
+stevedore==1.26.0
 tqdm==4.15.0
