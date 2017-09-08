@@ -8,8 +8,6 @@ python:
   - "3.5-dev"
   - "3.6"
   - "3.6-dev"
-  - "3.7-dev"
-  - "nightly"
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq libatlas-dev libatlas-base-dev liblapack-dev gfortran libhdf5-serial-dev python-tables
