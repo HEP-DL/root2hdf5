@@ -6,7 +6,7 @@ cryptography==2.0.3
 PyYAML==3.12
 pytest==3.2.2
 mock==2.0.0
-numpy==1.13.2
+numpy==1.13.3
 click==6.7
 stevedore==1.26.0
 tqdm==4.15.0
