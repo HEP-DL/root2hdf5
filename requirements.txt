@@ -1,5 +1,5 @@
 numpy==1.14.2
 click==6.7
 stevedore==1.28.0
-tqdm==4.19.7
-tqdm==4.19.7
+tqdm==4.20.0
+tqdm==4.20.0
