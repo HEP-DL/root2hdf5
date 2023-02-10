@@ -7,4 +7,4 @@ mock==3.0.5
 numpy==1.15.3
 click==7.0
 tqdm==4.28.1
-stevedore==1.30.0
+stevedore==5.0.0
